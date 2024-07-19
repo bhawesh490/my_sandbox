@@ -1,0 +1,38 @@
+Lets see data attributes in context of classes and instances
+lets focus on data attributes first not on the function becuase function behaviour is litte bit different
+
+class MyClass:
+    language = 'Python'
+
+my_obj = MyClass()
+My Class Namespace
+MyClass.__dict__   in this namespace dict it has with other things {'language':'Python'}
+but my_obj is an object and it has also its own namespace
+my_obj.__dict__ will be empty {}
+
+MyClass.language ->Python starts looking for language attribute in MyClass Namespace
+MyClass.language->'Python'
+my_obj.language ->Python starts looking in my_obj namespace
+                ->if it finds it, returns it
+                ->if not,it looks in the type(class) of my_obj i.e.MyClass
+                ->'Python'
+
+--------------------------------------------------------------------------
+class MyClass:
+    language = 'Python'    -->class attribute
+
+my_obj = MyClass()
+my_obj.language = 'java'  -->instance attribute
+my_obj.__dict__ = {'language':'java'}
+my_obj.language -->java
+MyClass.language-->Python
+
+other_obj = MyClass()
+other_obj.__dict__ = {}
+other_obj.language = 'Python' since it will be not in its namespace it will go and fetch from
+class namespace
+
+
+
+
+

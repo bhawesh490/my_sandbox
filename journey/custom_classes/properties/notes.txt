@@ -1,0 +1,203 @@
+1-We have seen to define custom classes and how to
+-define instance methods
+-get/set attributes directly on the instance
+c.radius = 10
+self.radius = 10
+these are sometimes called bare attributes
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def say_hello(self):
+        return f'Hello,my name is {self.name}'
+
+alex = Person('Alex')
+alex.say_hello()  -->Hello,my name is Alex
+alex.name = 'Eric'
+alex.say_hello()  -->Hello,my name is Eric
+
+we have been accessing these attributes values directly
+we have no control over what the assigned values are
+we have no contol on formatiing or modifying attributes when it is read
+
+sometime we do
+we can control things in the __init__ when the instance is created
+class Sale:
+    def __init__(self, quantity):
+        if not isinstance(quantity,int):
+            raise ValueError('Must be an int')
+        self.quantity = quantity   -->we could have used else block also
+
+but we cannot set how it is set subsequently
+
+s = Sale(10)
+s.quantity = "zero" this will work
+for this we are going to use something called properties
+
+Property
+-a property is like an attribute but
+-the value is set via a method(setter)
+-the value is retrieved via a method(getter)
+
+if name is a property in the Person class ,and p is the instance
+p.name  = 'Alex'
+ -calls the setter method for name ,passing Alex
+print(p.name)
+ -calls the getter method for name,returing a value
+
+Read Only properties
+-can create read only properties
+-define a getter method
+-but dont define a setter
+(write only properties are possible but not common )
+
+Creating  a Read Only  Property
+1-define a method with the name of the property
+2-decorate the method with @property (built in method)
+
+class Math:
+    @property
+    def pi(self):
+        return 3.14
+m = Math()
+m.pi -->calls the method pi() bound to m (eg m.pi())
+
+class Person:
+    def __init__(self, name):
+        self._name = name
+
+    @property
+    def name(self):
+        return self._name
+-notice the underscores
+-convention
+-signifies _name is a private attribute to the class
+-people using this class should not modify it directly
+
+Read and Write Property
+-first define a getter
+-then define  the setter
+
+class Person:
+    def __init__(self, name):
+        self._name = name
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value
+-all these property names must be the sam each
+
+
+Calculated Properties
+-properties are very general
+-they are just methods
+-they do not have to be used just to return an attribute
+-they can just caclulate and return some value
+
+class Person:
+    def __init__(self, dob):
+        self.dob = dob
+
+    @property
+    def age(self):
+        age = <calc current age>
+        return age
+p = Person('dob')
+p.age --->this will give the age although it was not defined from outside
+
+
+
+
+----------------Properties Advance Notes------------------------------------------
+We saw that when we define "bare" attributes in classes and instances
+class MyClass:
+    def __init__(self, language):
+        self.language = language
+
+obj = MyClass('Python')
+print(obj.language)   -->Python
+obj.language = 'Java'
+direct access to the language
+
+1-in many languages direct access to the attributes is higly discouraged
+2-instead the convention is to make the attribute private,and public getter and setter methods
+3-although we dont have private attributes in python we could write  it this way
+
+class MyClass:
+    def __init__(self, language):
+        self._language = language
+    def get_language(self):
+        return self._language
+    def set_language(self, value):
+        self._language = value
+
+Now to get and set the attributes what code we would write
+----------------------------------
+print(obj.language)
+obj.language = 'Java'
+----------------------------------
+or
+----------------------------------
+print(obj.get_language())
+obj.set_language('Java)
+----------------------------------
+
+Why we need these get and set methods?
+
+class MyClass:
+    def __init__(self, language):
+        self._language = language
+    def get_language(self):
+        return self._language
+    def set_language(self, value):
+        self._language = value
+
+1-In this case mimicing java programming we can say that language is considered as an instance property
+2-But it is only accessible via the get_language and set_language methods
+3-why using the methods and not using the direct attribute we can control how i want my attributes to be set and get
+
+
+class MyClass:
+    def __init__(self, language):
+        self._language = language
+    def get_language(self):
+        return self._language
+    def set_language(self, value):
+        self._language = value
+
+    language = property(fget=get_language, fset=set_language)
+
+Now we have defined a property called language and using this property we can
+access the language attribute directly
+
+m = MyClass('Python')
+print(m.language)
+m.language = 'Java'
+
+m.__dict__ language was not in the namespace dict of the object how did it find language
+Remember how python looks for the attributes
+1-searches instance namespace first
+2-but also looks in the class namespace
+    --finds language which is a property object that has get and set accessors
+    --uses the accessor methods (how-->later)
+
+
+
+The Property class(type):
+-->constructor has few parameters
+fget = specifies the fuction to use to get instance property value
+fset = specifies the function to use to set instance property value
+fdel = specifies the function to call when deleting the instance property
+doc = a string representing the docstring of the property
+
+in general we start with plain attributes and if later we need to change to a property
+we can easily do so using the property class without changing the interface
+
+
+
+

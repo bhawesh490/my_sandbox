@@ -1,0 +1,118 @@
+Defining Attributes in a class
+class MyClass:
+    language = 'Python'
+    version = '3.6'
+
+MyClass is a class -> it is an object (of type type)
+in addition to whatever attributes Python automatically creates for us
+eg __name__
+it also has language and version attributes
+
+Retrieving attribute values from Objects
+class MyClass:
+    langauge = 'Python'
+    version = '2.1'
+
+getattr function    getattr(object_symbol, attribute_name, optional_default)
+getattr(MyClass, 'language') -->'Python'
+getattr(MyClass,'x')----> Attribute exception
+getattr(MyClass,'x','N/A') -->'N/A'
+
+dot notation(shorthand)
+------------------------------------------------------------------------------------------
+MyClass.language
+MyClass.version
+
+Setting attribute values in objects
+class MyClass:
+    language = 'Python'
+    version = '3.6'
+
+setattr function setattr(object_symbol, attribute_name, attribute_value)
+setattr(MyClass,'version','3.7')
+we can also set class attribute by
+MyClass.version = 3.7
+This has modified the state of MyClass -->MyClass was mutated
+getattr(MyClass,'version')
+MyClass.version = '3.7'
+
+
+setting attribute values in an object
+class Myclass:
+    language = 'Python'
+    version = '2.6'
+
+what happens if we call a setter for an attribute we did not define in our class?
+Python is a dynamic language ->can modify our class at runtime
+setattr(MyClass,'x',100)  or MyClass.x = 100
+-MyClass now has a new attribute named x with a state of 100
+getattr(MyClass,'x')
+MyClass.x  will give now 100
+
+
+Where is the state stored?
+Ans-in a dictionary
+class MyClass:
+    langauage = 'Python'
+    version = '3.7'
+
+MyClass.__dict__(dict dunder method)
+mappingproxy({'__module__':'__main__','language':'Python','version':'3.7','__doc__':None})
+__main__=class namespace
+this dictionary is not directly mutable but setter can mutate it
+ensures keys are strings(helps speed things up for python) in that proxy dict
+
+
+Mutating attributes
+class MyClass:
+    languaage = 'Python'
+    version = '2.1'
+
+MyClass.__dict__ -->
+mappingproxy({'__module__':'__main__','language':'Python','version':'2.1','__doc__':None})
+
+we can now mutate the attributes
+setattr(MyClass, 'x',100) or MyClass.x = 100
+And this is reflected in the namespace
+MyClass.__dict__ -->
+mappingproxy({'__module__':'__main__','language':'Python','version':'2.1','__doc__':None,'x':100})
+
+
+Deleting Attributes:
+so if we can mutate the namespace at runtime by using setattr(or equivalent dot notation)
+can we remove an attribute at runtime
+
+Yes
+Using delattr(obj_symbol, attribute_name) or del keyword
+Class MyClass:
+    language = 'Python'
+    version = '3.6'
+
+MyClass.__dict__ -->
+mappingproxy({'__module__':'__main__','language':'Python','version':'3.6','__doc__':None})
+
+delattr(MyClass,'version') or del MyClass.version
+MyClass.__dict__-->
+mappingproxy({'__module__':'__main__','language':'Python','__doc__':None})
+
+Accessing the namespace directly
+as we saw the class namespace uses a dictionary ,which we can request using the __dict__ attribute of the class
+
+The __dict__attribute of a class returns a mapping proxy object
+Although this is not  dict it is still a hash map (dictionary) so we can at least read access the class namespace
+directly -not common practise
+
+class MyClass:
+    language = 'Python'
+    version = '3.6'
+MyClass.language
+getattr(MyClass,'language')
+MyClass.__dict__['language']
+
+
+
+
+
+
+
+

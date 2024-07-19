@@ -1,0 +1,36 @@
+The object class
+-when we define a class that does not inherit from another class explicitly
+-python makes class inherit from the object implicitly
+-object is a class (even though it does not use a camel case)
+type(object)->type
+
+class Person:
+    pass
+same as
+
+class Person(object):
+    pass
+
+type(Person)->type
+-this means that every class we create is a subclass of object
+-every object even function
+issubclass(Student,object) ->True
+isinstance(s1,object) ->True
+
+
+Implication of inheriting from object
+-any class we create automatically inherits behaviour and attributes from the object class
+__name__
+__new__
+__init__
+__repr__
+__hash__
+__eq__ and many more
+
+so even if we create an empty class
+class Person:
+    pass
+
+p = Person()
+p.__name__
+p.__repr__

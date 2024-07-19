@@ -1,0 +1,14 @@
+my_obj = MyClass()
+type(my_obj) --->MyClass
+isinstance(my_obj, MyClass) -->True
+
+when we call a class a class instance object is created
+this class instance object has its own namespace(its own __dict__)
+-distinct from the namespace of the class that was used to create the object
+-this object has some attributes Python automatically implement for us
+
+-->__dict__ :is the object local namespace
+-->__class__:tells us which class was used to instantiate the object
+-->prefer using type(obj) instead of obj.__class__
+its important to understand that class and instances of the classes are not the same object
+they have their own namespace

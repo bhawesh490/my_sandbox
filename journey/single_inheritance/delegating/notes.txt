@@ -1,0 +1,149 @@
+Delegating to parent
+Usage of super()
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Student(Person):
+    def __init__(self, name, age, major):
+        self.major = major
+        self.name = name
+        self.age = age
+
+There should be a better way for doing the above step
+We can explicitly call a method from the parent class ->delegating to a parent
+->super()
+super().method()
+we call method in the parent ,but bound to the instance it is called from
+
+
+
+Example:
+class Person:
+    def sing(self):
+        return "I am a lumberjack and I am ok"
+
+class Student(Person):
+    def sing(self):
+        return super().sing() + '\n'+"I sleep all night and i work all the day"
+
+s = Student()
+s.sing()
+I am a lumberjack and I am ok
+I sleep all night and i work all the day
+
+Careful:
+if you forget super() in super().sing() and use self.sing() you will end up in infinite loop
+
+
+
+-delegation works in the way up the inheritance hiearchy until it finds what it needs
+class Person:
+    def sing(self):
+        return "I am a lumberjack and i am ok"
+
+class Student(Person):
+    pass
+
+class MusicStudent(Student):
+    def sing(self):
+        return super().sing() + '\n'+'I sleep all night and I work all the day'
+
+m = MusicStudent()
+print(m.sing())
+
+"I am a lumberjack and i am ok"
+'I sleep all night and I work all the day'
+
+
+Example __init__
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Student(Person):
+    def __init__(self, name, age , major):
+        super().__init__(name, age)   ---->delegate back to parent
+        self.major = major            ---->and do some additional work
+
+When delegating ,you dont have to delegate first
+class Student:
+    def __init__(self, name, age, major):
+        self.major = major
+        super().__init__(name,age)
+
+but it is usually safer to do so
+
+Example:
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.major = 'NA'
+
+class Student(Person):
+    def __init__(self, name, age, major):
+        self.major = major
+        super().__init__(name, age)
+
+s = Student('alex',20,'English')
+s.name > 'alex'
+s.age >20
+s.major > 'NA'
+
+
+Delegation and Method Binding
+-When we call a method from an instance ->method is bound to the instance
+-when we delegate from an instance to parent method
+ method is also bound to the instance it was called from
+
+class Person:
+    def hello(self):
+        print('In Person class',self)
+
+class Student(Person):
+    def hello(self):
+        print('In Student class',self)
+        super().hello()
+p = Person()
+s = Student()
+p.hello() --> In Person class,Person object at memory address
+s.hello() -->In student class,Student object at memory address
+             In Person class,Student object at memory address
+
+
+----------------------------------------------------------------------
+class Person:
+    def wake_up(self):
+        print('Person awakes')
+    def do_work(self):
+        print('Person works')
+    def sleep(self):
+        print('Person sleeps')
+    def routine(self):
+        self.wake_up()
+        self.do_work()
+        self.sleep()
+
+class Student(Person):
+    def do_work(self):
+        print('Student studies')
+    def routine(self):
+        super().routine()
+        print('but not before a quick game')
+
+p = Person()
+p.routine()
+'Person awakes'
+'Person works'
+'Person sleeps'
+
+s = Student()
+s.routine()
+Person awakes
+Student studies
+Person sleeps
+but not before a quick game

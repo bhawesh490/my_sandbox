@@ -1,0 +1,8 @@
+Webcam Photo Sharer
+Description:An App that starts the computer webcam ,lets the user capture a photo and uploads the photo
+to the web and creates a sharable link.
+Objects:Identify nouns in the Description
+1-App
+2-computerwebcam
+3-photo
+4-web

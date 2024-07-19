@@ -1,0 +1,18 @@
+class MyClass:
+    language = 'Python'    --->data attributes
+
+    def say_hello():       --->function attribute
+        print("Hello World")
+
+1-say_hello is also an attribute of my class
+2-its value happens also to be callable
+3-MyClass.__dict__
+mappingproxy({'language':'Python','say_hello':<function __main__.MyClass.say_hello()})
+
+How to call them?
+using getattr:
+getattr(MyClass,'say_hello')()  -->'Hello World'
+
+using dot notation
+MyClass.say_hello() -->'Hello World'
+

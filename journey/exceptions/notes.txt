@@ -1,0 +1,16 @@
+Two main categories of exception
+1-compilation exceptions eg (syntax error)
+2-execution exceptions   eg(ValueError,KeyError,StopIteration)
+Python built in excpetion classes use inheritance to form a class hiearchy
+base exception for every exception in Python
+-->BaseException
+-->but do not inherit form this one
+
+Hireachy
+BaseException
+   SystemExit   -->raised on sys.exit()
+   KeyboardInterrupt -->raised on Ctrl+C
+   GeneratorExit  -->raised when generator or coroutine is closed
+   Exception      -->everything else
+
+so we basically inherit of this Exception class not BaseException

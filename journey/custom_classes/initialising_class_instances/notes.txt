@@ -1,0 +1,2 @@
+when we initialise a class we assume that the object is already created for that class
+when dunder__init_ method does is that it basically initialise the object with those arguments

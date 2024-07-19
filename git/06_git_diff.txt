@@ -1,0 +1,11 @@
+git diff command to view changes between commits ,branches ,files and working directory
+Use cases:
+1-if you have not staged anyfile then use git diff to check the difference [Works only if the file is not staged or unstaged]
+2-git diff head (changes in our working directly since the last commit)
+(HEAD) is typically the pointer to the last commit in their respective branches
+Inclues staged and unstaged changes
+3-git diff --staged (to see only staged changes)
+4-git diff --staged [filename] (to track only the files)
+5-git diff HEAD [filename]
+6-git diff branch 1 branch 2
+7-git diff commmit1 commit2

@@ -1,0 +1,68 @@
+Pytest
+Testing Automation Framework
+1-software Testing
+2-Automation
+3-Test Framework
+
+Rule1
+Any Python function become an individual test if the name of that function starts with test.*
+
+def my_func():
+    print("Hello I am a function")
+
+Test function
+def test_my_func():
+    print("Hello i am a Test Function")
+
+Rule2
+Python files that have names either starting with test_* or ending with _test* are pytest files/test files
+files                  Test Files
+my_file.py             test_my_file.py
+practise.py            practise_test.py
+device_app_file.py     device_app_test.py
+app_lock.py            test_app_lock.py
+
+Assert are check that will return true/false
+Rule3
+Add assert to verify/test something ,if assert fails execution stops there ,execution continues otherwise
+
+test function with assert pass           test function with assert fail
+def test_my_func():                     def test_my_fun():
+    x = 10                                   x = 11
+    assert x == 10                           assert x == 10
+if assert fails it will not execute the next line of code
+
+-----------------------
+Run py.test command to execute/run a test
+Run py.test -sv to get detailed test report
+GREEN ,means test is passed
+RED, means test is failed
+can run tests in parallel
+---------------------------------
+to run test only for a specific file ,we need to use
+py.test <filename>
+py.test test_device.py
+py.test -sv test_device.py
+
+----------------------------------------------
+how to run specific functions in test files
+approach 1
+groupong by the same substring
+py.test -k mobile
+-this will execute all the test names having the word "mobile" in its name
+in this case ,
+def test_mobile_samsung()
+def test_mobile_mi()
+def test_mobile_oppo()
+def test_mobile_iphone() will be executed
+
+approach 2
+using markers
+-import pytest module in your file
+-add @pytest.mark.<markername> to the test
+-py.test -m <markename>
+
+----------------------Fixtures---------------------------------------------------------------
+-functions that will run before each test function to which it is applied
+-use as pre-conditioning such as database connections,providing some sort of input data to the test
+-no need to repeat a code again and again ,fixture can used instead

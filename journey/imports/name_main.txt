@@ -1,0 +1,17 @@
+When you import a Python script as a module, all the code in the script is executed immediately. This includes any function definitions, class definitions, and any standalone code that isn’t inside a function or class.
+
+However, you won’t typically see any output when you import a script, unless the script contains standalone code that produces output (like a print statement). This is why it’s common to put code that produces output or has side effects inside a function or under if __name__ == '__main__':, so it doesn’t run when the script is imported.
+
+Here’s an example to illustrate this:
+# my_script.py
+
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("World"))  # This line will run when my_script.py is imported
+If you have another script that imports my_script.py like this:
+
+import my_script
+And you run python another_script.py, you’ll see Hello, World! printed to the console. This is because the print(greet("World")) line in my_script.py is executed when my_script.py is imported.
+
+So, to know if a script is run when you import it, you can look for any output or side effects that occur when you import the script. If you don’t see any output or side effects, it means the script doesn’t have any standalone code that produces output or has side effects. But rest assured, the script is still being run and any functions or classes defined in the script are available for you to use in your current script.

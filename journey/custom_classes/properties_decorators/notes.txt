@@ -1,0 +1,26 @@
+The property class can be instantiated in different ways
+x = property(fget=get_x,f_set=set_x)
+The class defines methods (getter,setter,deleter) that can take a callable as an argument
+and return the instance with the appropriate method now set
+
+We can create in other way also:
+x = property()
+x = x.getter(get_x)
+x = x.setter(set_x)
+or
+x =  property(get_x)
+x = x.setter(set_x)
+
+--------Using Decorator---------------------------------------------------------
+def MyClass:
+    def __init__(self, language):
+        self._lanuage = language
+
+    @property
+    def language(self):
+        return self._language
+
+    @language.setter
+    def language(self, value):
+        self._language = value
+

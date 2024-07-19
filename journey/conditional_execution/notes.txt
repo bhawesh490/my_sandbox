@@ -1,0 +1,18 @@
+Concept of terniary operation
+if price < 100:
+  volume = 10
+else:
+   volume = 20
+
+we can assign value to volume variable like
+volume = 10 if price < 100 else 20
+so in general it could be any expression other than operand
+<exp1> if <condition> else <exp2>
+example :
+var = (a-b) if a > b else (b-a)
+
+<exp1> = (a-b)
+<exp2> = (b-a)
+
+
+

@@ -1,0 +1,181 @@
+2 types of iterations
+---------------------------------------------------------------------
+1-deterministic iterations (we know in advance how many iterations)
+  for loop
+2-non deterministic iterations (we are not sure in iterations)
+  until some condition is met to True
+  while loop 
+
+range object 
+it is an iterable object 
+it serves up integers one by one as they are requested 
+but the full list of intergers does not exists all at once in memory 
+memory efficient 
+it has finiite number of integers 
+we can iterate over that range object 
+since it exists and has a finite number of integers --->deterministic iteration 
+we can use the range() function to create range objects
+3 flavors depending on how many arguments are specified 
+range(end) one argument 
+-->generates integers from 0(inclusive) and end (exclusive)
+range(start, end) two arguments
+-->generates integers from start(inclusive) to end(exclusive)
+range(start, end, step) three arguments
+(inclusive) to end (exclusive)
+-->generates integers from start(inclusive) to end (exclusive)
+-->in steps of step 
+
+view contents of range object 
+-since we already discussed that range object just hands out us the integers one by one it does not store 
+all of them in memory 
+
+r = range(5)
+print(r) --->'range(5)'[not what we wanted]
+can convert range object to a list or tuple 
+list function and tuple function will iterate over this range object and create a list/tuple out of it
+as range object is iterable .we can do the same using for loop
+example:string is iterable so 
+list('abc')--.['a','b','c']
+
+print(tuple(r)) -->(0,1,2,3,4)
+print(list(r))-->[0,1,2,3,4]
+
+range object in iterable 
+we can use a for loop to iterate over the elements of the iterable 
+
+-----------------------------------------------------------------------------------
+For loops
+The enumerate function 
+1-it takes an iterable argument 
+2-returns a new iterable whose elements are a tuple consisting of 
+  1-the index number of the original element 
+  2-the original element itself 
+
+data = [10,20,30,-10,40,-5]
+for t in enumerate(data):
+   print(t)  
+
+output
+    (0,10)
+    (1,20)
+    (3,30)
+    (4,-10)
+    (5,40)
+    (6,-5)
+
+we can unpack the tuples now 
+
+for t in enumerate(data):
+    index,element = t   --->this will unpack the tuples
+    if element < 0:
+       data[index] = 0 
+
+alternatively we could have unpacked this in for itself 
+example
+for index,element in enumerate(data):
+     if element <0:
+       data[index] = 0 
+
+------------------------------------------------------------------------------------
+while loops 
+1-different than for loop 
+2-here we want to repeat some code as long as some condition is True
+3-non-deterministic->we dont necessarily know when the condtion becomes True 
+4-may be never -infinite 
+
+while expr:
+  <code block>
+
+1-expr is evaluated at the start of each iteration 
+2-if it is True ,execute <code block>
+3-if it is False,terminate loop immediately
+4-may never execute if expr is False on first iteration
+5-may never terminate (if expr never becomes False)
+
+value = 10 
+while value < 15:
+   print(value)
+   value = value + 1
+
+value = 100 
+while value < 15:
+   print(value)
+   value = value + 1
+
+output: no output 
+basically its not iterating on some iterable but iterating on some conditions
+
+-----------------------------------------------------------------------------
+continue ,break and else 
+
+sometimes we want to skip an iteration but without terminating the loop
+->continue 
+->immediately jumps to the next iterations 
+my_list = [1,2,3,100,4,5]
+for i in my_list:
+   if i > 50:
+     continue
+   print(i)
+print('done')
+
+1
+2
+3
+4
+5
+'done'
+continue is not used most of the times in loop as it could be confusing to use it 
+
+same above code can be rewritten as shown below
+my_list = [1,2,3,100,4,5]
+for i in my_list:
+   if i <= 50:
+     print(i)
+print('done')
+
+Early Termination 
+loops can be executed early (before all elements have been iterated)
+-->break 
+my_list =  [1,2,3,100,4,5]
+for i in my_list:
+  if i > 50:
+     break
+  print(i)   
+
+print('done')
+
+output 
+1
+2
+3
+'done'
+when i is 100
+break is executed 
+loop is terminated immediately
+-------------------------------------------
+important
+else clause in for loop 
+1-python is really confusing here ...
+2-for loop can have an else clause 
+-->but it has nothing to do with else clause of if statement 
+--?the else clause of a for loop executes if and only if no break was encountered 
+in my mind i read it as 'else if no break'
+example:
+for i in range(5):
+    <code block 1>
+else: #if no break 
+    <code block 2>
+
+    -->code block 2 >executes if loop terminates normally 
+
+example 2:
+found = false 
+for el in my_list:
+  if el == 'Python':
+     print('found')
+     break 
+else:  # if no break 
+  print("not found")     
+
+
+  

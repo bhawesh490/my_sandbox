@@ -1,0 +1,76 @@
+constructing instance of the class
+-call the class ex Person('Guide')  --classes are callable
+-the new class instance is created and initialised in some way
+-the __init__ method is called (bound to new object)
+-after the instance has been created
+-gives us hook to customize the initilization
+-but how is the new instance actually created?
+
+The __new__ method
+-object implements the __new__ method
+-it has a default implementation of __new__ method
+-used in the creation of the instance of any class
+
+can be called directly
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+p=Person() means
+p = object.__new__(Person)
+-p is a new object,an instance of Person
+-__init__ is not called automatically
+-we have to do it ourselves p.__init__('Raymond')
+
+the __new__ method
+-object.__new__(class,*args,**kargs)
+-it is a static method
+-not bound to object
+-class is the symbol for the class we want to instantiated
+-accepts *args and **kwargs
+-signature must match __init__ of class
+-but it just ignores these arguments
+-returns a new object of type class
+-can overide __new__ in our custom classes
+-should return a new object
+    -should be instance of the class
+    -but does not have to be
+
+overriding the __new__ method
+-typically we do something before/after creating the new instance
+-delegating actul creation to object.__new__
+-in practise we use super().__new__
+-ensure inheritance works properly
+
+class Person:
+    def __new__(cls, name, age):
+        #can do things here
+        #create the objects we want to return
+        instance = object.__new__(cls)
+                 = super().__new__(cls)
+        #more code
+        #and finally returns the object we want
+        return instance
+
+How __new__ called?
+it is called by Python when we call the class  -->we will come back to this
+Person('Guido')
+-Python calls __new__(Person,'Guido')
+-__new__ return as object
+-if that object is of the same type as one "requested'
+-new_object.__init__('Guido') is called
+-new object is returned from call
+p = Person('Guido')
+
+Remember
+__new__ is a static method
+-done implicityly for us by Python
+class Person:
+    @staticmethod
+    def __new__(cls, name):
+        return super().__new__(cls)
+-dont need to use @static method
+class Person:
+    def __new__(cls, name):
+        return super().__new__(cls)
+

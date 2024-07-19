@@ -1,0 +1,14 @@
+1-git was designed to work with linux envioronment the developer of linux created it
+2-in windows if we want to use git we have to use git bash terminal(install git bash) which provides a linux env
+-------------------------------------------------------------------------------------------------------
+3-configuring your git name and email (its not tied to account).Its only used for information purpose who made the commits
+git config --global user.name "bhawesh"  [we can always change it]
+git config --global user.email "bhawesh90@gmail.com"
+to check if we have already a name/email configured
+git config user.name 
+git config user.email
+
+
+
+
+--------------------------------------------------------------------------------------------------------

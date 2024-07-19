@@ -1,0 +1,22 @@
+1-python has lot of built in libraries(modules and packages) that come standard with base python installation
+2-we have to physically tell python we want to use them 
+3-we load them somewhere in memory using an import statement 
+4-why not load(import) everything  always?
+5-there is ton libraries do you really want to load thousands of libraries into memory for things we relly dont need
+6-think of modules as code files
+7-modules are just objects 
+8->import math -->math is a module in the standard library for math related functionality
+-->the math module has been loaded(from file)
+-->and the variable(symbol) math is a reference to that module object
+-->math contains many functions such as sqrt 
+-->math.sqrt(2)
+-->we can use import math as m (use of alias)
+9-import os.path as os_path 
+# note here modules inside modules pattern
+10-packages are combination of modules 
+11-from math import sqrt -->important ** we still load the complete math module in the library but in localnamespace 
+we have sqrt method now 
+so instead of saying math.sqrt(1) we can say sqrt(1) directly 
+12-from math import sqrt,pi,factorial 
+13-
+

@@ -1,0 +1,87 @@
+An Iterables is something that can be iterated over 
+1-we can take one element then the next then the next until we covered all elements 
+2-no specific iteration order in mandated
+
+General idea behind iteration is
+->start somewhere in the collection (at the beginning if that means something)
+->keep requesting the next element 
+->until there is nothing left(exhausted)
+
+so we have 2 concepts here 
+iterable-a collection of objects that we can iterate over 
+iterator -something that is able to give us the next element when we request it
+
+1-an iterable is something that can be iterated over 
+2-but we still need something that can 
+  -->give us next item 
+  -->keep track of what its given us so far (so it does not give us the same element twice)
+  -->inform us when there is nothing left for it to give us 
+  -->this is called iterator 
+  -->used by python to iterate over an iterable
+
+Note on Iterables
+1-Iterable is just a collection of objects 
+2-it does not know anything about how to iterate 
+3-however it does know how to create and give us an iterator when we need it 
+4-iterables implement a special method  __iter__() (dunder method) that returns a new iterator 
+5-can also be called using iter() function 
+6-the iterator has a special method called __next__()(dunder method) that can be called to get 
+the next element 
+  -->can also used next() function 
+  -->it keeps track of what it has already handed out (so iterators are kind of one time use)
+  -->it raises a StopIteration exception when next() is called if there is nothing left 
+
+The Internal Mechanics of for Loop 
+When we write a for loop that iterates over an iterable ,what python is actually doing this
+
+l = [1,2,3,4,5]
+iterator = iter(l)
+try:
+    while True:
+      #return next(iterator)  -->here we will just print it 
+      print(next(iterator))  
+      print(iterator.__next__()) or we can use this also dunder method
+except StopIteration:
+    #expected when we reach the end 
+    #so silence this exception 
+    pass       
+
+1-The key thing here is that we can see that iterator has some state 
+  -->it has a __next__() method (special method or dunder method)
+  -->but there is no going back ,or starting from the beginning again
+  -->if we have to go back we have to request a new iterator
+  -->and thats what a for loop does -it requests a new iterator from the iterable before it starts looping
+  -->objects such as lists,tuples,string,dictionaries,sets,range objects are iterables
+  -->but some objects in Python are iterators--not iterables 
+  -->Remeber iterators implement the next method iterables do not 
+  -->iterables implement the __iter__ method to get an iterator 
+  -->iterators actually implement an __iter__ method too but they just return themselves(with their current state),not a new iterator
+  -->so when we are looping over an iterator object it basically means that after you finish iterating with that iterator that iterator is exhausted 
+  -->and so some function in python will return iterators not iterables .so if we make a variable equal to iterator and we try and loop over that variable it will work for the first time but will not work the second time becuase there will be nothing left to iterate
+  -->so iterators only allow us to iterate over them once 
+
+
+
+Generators
+what does this (valid) expression do?
+(i**2 for i in range(5))
+1-it creates a generator object 
+2-generators are iterators 
+3-they calculate and hand out elements one at a time as requested 
+4-unlike [i**2 for i in range(5)] calculates all the elements and creates a list immediately
+5-generators uses lazy iteration 
+6-a lazy property is one that is not calculated until it is requested 
+
+Why use Generators
+memory efficiency
+eg take all the rows from a file and write them out,transformed to some other file 
+read the entire file in memory ,iterate through that and save rows 
+-->entire file in memory!
+-->you may not have enough memory 
+
+read lines one at a time from file 
+-->read a row,process it ,save it ,discard it ,request next row 
+-->only one line in memory at any point 
+
+
+

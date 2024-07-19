@@ -1,0 +1,68 @@
+Decorating Classes
+@my_dec
+class MyClass:
+    pass
+
+recall what the decorator @syntax actually does with a function
+@my_dec
+def my_func():
+    pass
+
+def my_func():
+    pass
+my_func = my_dec(my_func)
+
+same with the class
+@my_dec
+class MyClass:
+    pass
+
+class MyClass:
+    pass
+MyClass = my_dec(MyClass)
+--------------------------------------------------------------------
+Decorating Classes
+-write a decorator that expects a class as input
+-and returns the tweaked class
+
+def savings_account(cls):
+    cls.account_type = 'Savings'
+    return cls
+
+@savings_accounts
+class BankAccount:
+    def __init__(self, account_number, balance):
+        self.account_number = account_number
+        self.balance = balance
+
+same as doing this
+class BankAccount:
+    def __init__(self, account_number, balance):
+        self.account_number = account_number
+        self.balance = balance
+BankAccount = savings_account(BankAccount)
+
+-----------------------------------------------------------
+We can even make decorator parameterised
+def apr(rate):
+    def inner(cls):
+        cls.apr = rate
+        cls.apy = ...
+        return cls
+    return inner
+
+@apr(0.02)
+class SavingsAccount:
+    pass
+
+@apr(0.06)
+class CheckingAccount:
+    pass
+
+class decorators can be used to
+create,delete or modify class attributes
+-plain attributes
+-modify methods
+-may even apply decorators to class methods
+-this is also metaprogramming
+

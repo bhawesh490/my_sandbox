@@ -1,0 +1,4 @@
+git branch  ---.list of branches in our repo
+git branch <branch name>  [it does not switch the head to the new branch]
+git switch <branch name>
+

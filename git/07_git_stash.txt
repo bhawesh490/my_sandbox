@@ -1,0 +1,4 @@
+git stash (save current uncommitted staged and unstaged changes)
+git stash pop
+git stash list [to see list of all the stashes]
+git stash clear

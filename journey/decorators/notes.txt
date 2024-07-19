@@ -1,0 +1,92 @@
+1-decoraters are form on meta programming
+2-they allow us to wrap functionality around an already defined function 
+3-without having to modify the code of original function 
+4-leverages clousures 
+
+why are decorators useful?
+-suppose we have a program with some functions called over and over again 
+-fun1 ,fun2,fun3 etc 
+-every time one of those functions is called we want to produce a log
+-may be just print to the console that the function was called 
+-we could certainly put the logging functionality into each function 
+-def fun1():
+    print("called fun1:)
+-def fun2():
+    print("called func2:)
+-so we are repeating the same code multiple times 
+-what if we want to include date/time call was made 
+-go back to the code and edit the logging code inside each funciton 
+-3 weeks later somebody tells me that we need to add timings as well 
+-go back and edit the logging code inside each function 
+
+-to avoid this we use decorators 
+example what we want is that :
+fun1(10,20)->start timing 
+           ->result = fun1(10, 20)
+           ->stop timing
+           ->log call,date/time and timing
+           ->return result 
+
+fun2(10,20)->start timing 
+           ->result = fun2(10, 20)
+           ->stop timing
+           ->log call,date/time and timing
+           ->return result 
+
+-we can achieve this wrapper functinality using closures 
+def outer(fn):
+    def inner():
+        print(f'calling {fn}')
+        result = fn()   fn is a free variable from outer scope
+        return result 
+    return inner 
+
+def hello():
+    return 'Hello'
+f = outer(hello)  ->inner function is created 
+                  ->it is a closure with fn poiting to hello 
+f()->call inner ,with fn pointing to hello 
+   ->this calls hello()
+   ->and returns the result of that call 
+
+so we can say that decorators are kind of wrappers 
+def fun(a, b):
+    some code 
+fun = wrapper(fun)  ----->shorthand notation---->      @wrapper 
+                                                        def fun(a ,b):
+                                                           some code 
+
+other dunder method                                         
+fun.__name__
+it gives the name of the function 
+
+
+
+-------------------------------------------------------------------------
+lru caching 
+1-this is a really interesting application of decorators
+2-it solves the following problem 
+3-you have some function that gets called ofter 
+4-the same set of arguments are used often 
+5-the function is deterministic 
+ -calls with the same arguments should produce the same results 
+6-re-calculating the function is fairly costly 
+7-Here we would use a caching mechanism
+8-first time a set of arguments is encountered ,calulates results 
+9-store results in a cache dictionary 
+10-subsequent calls with the same arguments recovers results from the cache 
+11-python has such a decorator called lru cache decorator 
+12-lru-least recently used 
+13-caches should not grow indefinitely 
+14-so keep the n most recent 
+
+from functools import lru_cache
+@lru_cache(maxsize=20)
+def my_func(a, b):
+   code here 
+
+-uses a decorator
+-this decorator can also take arguments 
+-there is a restriction 
+-the arguments passed to the function must be hashable values 
+   

@@ -1,0 +1,25 @@
+Fast Forward Merge
+
+Scenario:
+you are in a branch x and made some commit
+you switched to a new branch y and made some new commits
+since we have not made any new commits in branch x if we attempt to merge it will be a fast forward
+merge
+
+1-switch to the <branch where we want to merge>
+git switch <branch where we want to merge>
+git checkout <branch where we want to merge>
+2-perform Merge
+git merge <branch to merge>
+
+git branch -v [more information on branch]
+
+------------------------------------------------
+Merge Conflicts:
+1-The content from the branch you are trying to merge from is displayed
+between the ============
+            and
+            >>>>>>>>>>>>> symbols
+
+
+

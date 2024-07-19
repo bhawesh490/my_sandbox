@@ -1,0 +1,12 @@
+#There are 5 logging levels
+#Debug, Info, Warning, Error, Critical
+################################################################################################
+DEBUB: Detailed information ,typically  of interest only when diganosing problem
+INFO: Confirmation that things are working as expected
+WARNING: An indication that something unexpected happened, or indicative of some problem in near future
+ERROR: Due to more serious problem, the software has not been able to perform some function
+CRITICAL: A serious error,indicating that the program itself may be unable to continue running
+################################################################################################
+Default level is set to warning ,that means it will capture everything WARNING and above like ERROR and CRITICAL
+
+https://www.youtube.com/watch?v=jxmzY9soFXg

@@ -1,0 +1,186 @@
+Lambda functions
+1-these are just functions
+2-they are not defined using a def and a block of code 
+3-it is an expression that returns a function object 
+4-we can assign it to a variable or pass it as an argument 
+5-also called anonymous function 
+6-they are very simple function (no code block)
+7-lambda a, b: a + b
+a,b are paramters and a+b is an expression that is return 
+8-must be a single expression (expression like 2+2 it returns 4)
+9-no code block 
+9-so no loops,try..except..,if...else  etc 
+10-the above expression returns a  function object 
+11-we need to assign a symbol if we want to use it 
+f = lambda a,b :a +b 
+f(10,20) -->30
+
+
+Higher order functions
+1-functions are objects 
+2-functions can be passed to and or returned from functions 
+3-these are called higher order functions 
+4-functions that do not allow passing a function to or returning a function are called first order function 
+5-python does not have first order functions 
+6-a function definition can itself contain another function definition and can return it 
+7-this means we can call a function that builds another function and runs it or even returns it 
+8-what becomes interesting is that variables in the outer function become available to the inner function 
+
+example:
+def say_hello(first_name, last_name):
+    def assemble_name(): --->not we are not passing any arguments here it is referring top layer args
+       return ' '.join([first_name,last_name])
+    return ' '.join(['Hello, ',assemble_name(),'!'])
+
+say_hello('Eric','Idle')--->Hello, Eric idle
+
+passing function as arguments
+1-function arguments can be functions 
+2-the object is passed not called 
+3-so don't use () to pass a function ,that would pass the result of the function 
+
+example
+def add(a, b):
+   return a + b
+
+def apply(func, a, b):   func argument is going to receive a function object 
+    result = func(a, b)  we now call func which is whatever function we passed in 
+    return result 
+apply(add , 2 ,3) -->pass the add function to apply 
+                  -->5 
+
+Nested function
+1-function bodies can contain any valid python code 
+2-Including definiting functions 
+def say_hello(name):
+    def prefix():
+        return 'hello'
+    msg = prefix() + name 
+    return msg     
+
+Returning Functions 
+1-a function can also return a function 
+def identity(func):
+    return func
+
+def add(a ,b):
+    return a + b 
+
+f = identity(add)  f is now a symbol pointing to add 
+f(2, 3)-->5 
+
+example:
+def generate_func(name):
+    def add(a, b):
+        return a + b 
+    def mult(a, b):
+        return a * b
+    if name == 'sum':
+        return add  ---->note its just returing add object/symbol its not calling the number 
+    else:
+        return mult 
+f = generate_func('sum')
+f(2, 3) -->5 
+
+
+
+Notes on Map 
+
+1- the map() function calls a specified function for every element of some iterable 
+2-very similar to doing like this 
+
+def my_map(func, iterable):
+    result = [func(element) for element  in iterable]
+    return result 
+2-here we create a list that contain the function func applied in every element of the iterable 
+3-but it creates a list 
+4-can take a lot of space if iterable is large 
+5-especially wasteful if we dont iterate over all the values 
+
+-----------------------------------------------------------
+INSTEAD WE USE MAP 
+1-map() returns an iterator 
+2-iterator = map(func, iterable)
+3-as we iterate over that iterator:
+   -->python moves to the next item in iterable 
+   -->call func(element)
+   -->return the results 
+     -->less wasted space 
+     -->saves computations if we don't iterate over the whole list 
+     
+--------------------------------------------------------------------
+Concept of Closures in functions 
+function definition can be nested within another function
+def outer():
+    def inner():
+      
+we saw that we can return the inner function from the outer function
+
+but we can create variable in the outer function also or pass argument when we call it 
+
+def outer(a, b):
+    c = 100
+
+    def inner()
+       ""
+    return inner 
+
+inner can see those variables 
+variable a ,b and c can be captured by inner function also 
+this is called the closure 
+
+Example 2:
+def outer(a):
+    def inner()
+        return a * 10
+    return inner 
+
+f = outer(2) f is actually equal to symbol inner now as inner was returned by outer function 
+f now in the inner function that closes over a with a value 2
+so a is called a free variable of the closure f 
+-->now we can call f -->f() -->20 
+
+Rules:
+1-we can always read a variable from the outer scope
+def outer():
+    c = 100
+    def inner():
+        d = c * 10
+        return d
+    return inner 
+
+f = outer()
+reading c by inner function automatically uses the one in the outer scope 
+
+2-but things changes if we set that symbol to a value in the inner scope
+
+def outer():
+    c = 100
+
+    def inner():
+        c = 20
+        return c * 10
+in this case python ignores value of c from the outer scope 
+
+3-Example
+def power(n):
+    def inner(x):
+        return x ** n
+    return inner
+
+squares = power(2)
+-it calls power(2)
+-power runs with n = 2
+-inner is a function that captures n = 2 -->a closure 
+-the closure is returned
+-sqaures is the closure:function inner with n=2 that takes one argument (x)
+-squares(3)--> 9
+
+
+
+
+
+
+
+
+

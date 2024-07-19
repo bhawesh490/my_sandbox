@@ -1,0 +1,28 @@
+Descriptors
+There are  main methods that make up the descriptor protocol-they are not all required
+1-__get__ (similar to fget) used to get an attribute value p.x
+2-__set__ used to set an attribute value p.x = 100
+3-__delete__ used to delete an attribute del p.x
+4- __set_name__ new in python
+
+2 categories of descriptors
+1-those that implement __get__ only --->non data descriptors
+2-those that implement __set__ and/or __delete__ ->data descriptors
+
+
+Using a descriptor class
+1-we first define a class that implements the __get__ method only -->non data descriptors
+
+from datetime import datetime
+class TimeUTC:
+    def __get__(self, instance, owner_class):
+        return datetime.utcnow().isoformat()
+
+Next we use it in our class by specifying it as a class attribute
+class Logger:
+    current_time = TimeUTC()
+
+and we can use it this way
+l = logger()
+l.current_time   --->'2019-03-13'
+->as you can see it called __get__

@@ -1,0 +1,54 @@
+upunitll now we have used instance methods but sometimes we use class methods and static methods
+When we define a function in class
+class MyClass:
+    def hello():
+        return 'Hello'
+
+MyClass.hello -->just a plan function defined in MyClass
+MyClass.hello() -->Hello
+
+m = MyClass()
+m.hello -->method bound to object m -->instance method
+m.hello()-->TypeError(missing argument)
+
+so question is can we create a function in a class that will be always be bound to the class
+and never the instance?
+MyClass.fn -->method bound to the MyClass
+m.fn -->method bound to MyClass
+-->@classmethod
+
+
+class MyClass:
+    def hello():
+        print('hello..')
+    def ins_hello(self):
+        print(f'hello from {self}')
+    @classmethod
+    def cls_hello(cls):
+        print(f'hello from {cls}')
+
+Note:By default any function defined in a class will be handled as a bound method when called
+from an instance
+
+           MyClass                   Instance
+hello      regular function          method bound to instance --->call with fail
+ins_hello  regular function          method bound to instance
+cls_hello  method bound to class     method bound to class
+
+Static Method
+question:can we define a function in a class that will never be bound to any object when called?
+->yes
+->in python ,those are called static methods-->@staticmethod
+
+class Circle:
+    @staticmethod
+    def help():
+        return 'help available'
+type(Circle.help)-->function
+Circle.help -->help available
+
+c = Circle()
+type(c.help)-->function (not a method bound to any instance)
+c.help -->help available
+
+

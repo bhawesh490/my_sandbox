@@ -1,0 +1,96 @@
+different types of comprehension
+1-list
+2-dictionary
+3-sets 
+4-generators(dont create the entire list or iterables in the memory it gives us one by one it waits unitl you request them and then calculates and return them )
+5-
+
+
+1-comprehensions are easy way of creating iterables from new iterables
+2-example enumerate creates new iterabled from other iterables 
+3-like using for loop but easier to write 
+4-works well for simple cases 
+5-can quickly become unreadable 
+6-readibility matters 
+
+example:
+given a list of 2d vectors 
+[(0,0),(1,1),(1,2),(3,5)]
+create a new list containing the magnitude of each vector 
+[02+02,12+12,12+22,32+52]  -->2 means square 
+[0,2,5,34]
+
+list comprehension 
+--------------------------
+it is used to generate  a list object 
+example we start with an iterable number 
+num = (1,2,3,4,5) or num = [1,2,3,4,5]
+want to create  a new list containing the square of each element 
+
+sq = [1,4,9,16,25]
+can do this without comprehension 
+sq = []
+for numbers in numbers:
+   sq.append(numbers**2)
+
+Scenario 1
+number = (1,2,3,4,5)
+instead we can do it with comprehension
+sq = [ number **2 for number in numbers ]
+[ ]-->indicates we are creating a list 
+number**2--->an expression used to calculate each element of the new list 
+for number in numbers--->iteration over existing iterable 
+note how the loop variable is available in the 
+
+comprehension are actually Functions
+
+Scenario 2
+filter conditions 
+given an iterable of integers 
+-->generate a new list that only contains the even integers 
+numbers = [1,2,3,4,5,6,7,8]
+generete evens = [2,4,6,8]
+even = [number for number in numbers if number %2 == 0]
+we can also use terniary condition like this 
+number if price < 100 else number + 1 
+
+in general 
+[expression1 for item in items if expression2]
+if ->optional and act as a filter 
+
+
+dictionary comprehension 
+1-similar to list comprehension
+2-use {} insted of []
+3-remember literals for dictionary and sets uses {}
+4-dictionary elements are pairs 
+5-set elements are single elements 
+d = {'a':1,'b':2,'c':3}
+s = {'a','b','c'}
+
+{ key: value for item in items if expr}
+
+key:can be any python expression that calculates a valid key 
+value:can be any valid python expression that calculates some value 
+Example:
+widgets = ['widget1','widget2','widget3','widget4']
+sales = [10,5,15,0]
+create a dictionary whose keys are widget names and the value the number of sales but only include
+widgets that have sales 
+
+d = { widgets[i]:sales[i] 
+      for i in range(length(widgets)) 
+      if sales[i] > 0
+    }
+Step 1:first we wrote for i in range(length(widgets))
+step 2:if sales[i] > 0
+step 3:we defined key:value using widgets[i]:sales[i]
+step 4:wrapped them around {}
+
+set comprehension
+1-similar to a dictionary comprehension 
+2-but elements are not key:value pairs 
+3-just the key portion 
+{expr1 for item in items if expr2}
+numbers  = [1,1,2,2,3,3,4,4,5,5,6,6]
+s = { number**2 for number in numbers if number%2 == 0}

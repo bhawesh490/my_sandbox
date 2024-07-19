@@ -1,0 +1,26 @@
+git status [checks if we are in a git repo]
+---------------------------------------------
+git init [initialise the new repository]
+it creates .git folder in the repository
+it we delete .git folder all history is gone
+---------------------------------------------
+git commit
+1-snapshot point in time of the repository
+
+--------------------------------------------
+staging is like selecting similar files(same set of commits) to commit
+so lets sat you made changes to 8 files either you can add all 8 files and make 1 commit
+or
+you can add 4 files and make a commit and then add remaining 4 files and then make commit
+
+staging is done using git add
+git add file1 file2
+git add . (to add all in that directory)
+git commit -m "my message"
+----------------------------------------------
+logging the git[gives info about the branch you are in ]
+git log
+
+
+
+

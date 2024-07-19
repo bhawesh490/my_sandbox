@@ -1,0 +1,9 @@
+we can also extend the functionality  -->creating a more specialised class
+class Person:
+    pass
+
+class Student(Person):
+    def study(self):
+        return 'study_study_study'
+
+student now has extra functinality

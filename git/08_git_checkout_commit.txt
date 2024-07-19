@@ -1,0 +1,11 @@
+git checkout <commit_hash>
+HEAD points to a particular branch and branch points to the tip of commit in that branch
+when we checkout HEAD is detached from branch and it points to the commit
+
+What we can do in detached HEAD state
+1-poke around
+2-checout to the branch (git checkout develop)
+or
+1-poke around
+2-branch off from that commit (git checkout -b feature/iup-189)
+

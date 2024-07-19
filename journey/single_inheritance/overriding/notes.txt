@@ -1,0 +1,83 @@
+overriding functionality
+-when we inherit from another class ,we inherit its attributes ,including all callables
+-we can choose to redefine an existing callable in the subclass
+-this is called overriding
+
+class Person:
+    def say_hello(self):
+        return 'Hello!'
+
+    def say_bye(self):
+        return 'Bye!'
+
+class Student(Person):
+    def say_hello(self):
+        return 'Yo!'
+
+p = Person()
+s = Student()
+p.say_hello()   -->'Hello!'
+s.say_hello()   -->'Yo!'     uses overriding
+p.say_bye()     -->'Bye!'
+s.say_bye()     -->'Yo!'     uses inherited
+
+------------------------------------------------------------------------------
+when we create any class ,we can override any method defined in the parent class
+including inherited ones
+including those defined in the object
+
+class Person:
+    def __init__(self, name):   -->override the __init__ method in the object class
+        self.name = name
+
+    def __repr__(self):         -->override __repr__ in object
+        return f'Person(name={self.name})'
+
+class Student(Person):
+    def __repr__(self):        -->override __repr__ in the Person
+        return f'Student(name={self.name})'
+    inherit __init__ from Person
+
+p = Person('john')        str(p) -->Person(name=john)
+s = Student('eric')       str(s) -->Student(name=eric)
+
+-----------------------------------------------------------------------------------
+Objects  have a property : __class__ ->returns the class of the object was created from (we could use type also)
+Classes have a property :__name__ ->returns a string containing the name of the class
+
+To get the name (string) of the class used to create an object -->object.__class__.__name__
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}(name={self.name})'
+
+class Student(Person):
+    pass
+--------------------------------------------------------------------------------------
+suppose we have this type of hiearchy
+Person
+-eat() ->"Person eats"
+-sleep() ->"Person sleeps"
+-work()  ->"Person works"
+-routine() ->eat() work() sleep()
+
+p = Person()
+p.routine() ->Person eats
+            ->Person works
+            ->Person sleeps
+
+Now we create a Student class that overrides the work() method only
+Student:
+-work()    ->Student studies'
+
+what happen if we call routine() on student instance?
+s= Student()
+s.routine()
+-runs routine as defined in the Person class but bound to s
+-routine() calls eat() ->eat() in Person class bound to s->Person eats
+-calls work() -finds the overide in Student
+              -uses override in the Student    -->Student studies
+-calls sleep() ->sleep() in Person class bound to s

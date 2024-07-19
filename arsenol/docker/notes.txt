@@ -1,0 +1,108 @@
+application chalane ke lie jo dependecies chaiye hoti hai
+docker in sab ko pack krke container mai chalayega
+app+os+software package krta hai
+docker is advance version of virtualisation
+virtualisation advance version of containerisatin
+container ka khud ka os nahi hota hai[100% os mai hai to 5% hi lega jo missing hai]
+ container ke andar 5% os hota hai os line untuu
+docker khud ko chalene ke lie linux ka use krta hai
+no preallocation of ram
+container is the running state of image
+docker deamon will make image of container
+docker user can interact with docker daemon through client(cli)
+docker images are read only binary templates
+ways to create images
+1-take image from docker hub
+2-create image from docker file
+3-create image from existing docker container
+
+commands
+1-docker images to check images present
+2-docker search jenkins
+3-docker pull <image name>
+4-docker run -it --name /bin/bash
+ run(image create+start) (i interactive mode t terminal) name=name of container
+5-service docker status (to check if docker is running)
+6-docker start container_name
+7-docker attach <container_name>
+8-to see all container docker ps -a (ps =process status)
+9-docker ps (only running containers)
+10-docker stop <container name>
+11-docker rm <container name> delete a container
+12-to check if docker is installed or not (which docker)
+13-docker --version
+14-service docker start (to start the service)
+15-service docker stop (to stop the service)
+16-sudo docker images
+17-sudo docker ps
+18-docker run -it ubuntu /bin/bash
+19-exit from container (exit)
+20-sudo docker ps (this time it will create a new container id)
+21-to pull and image
+22-docker pull jenkins
+23-docker run -it jenkins /bin/bash
+24-to create a container of custom names docker run --name bhawesh -it jenkins /bin/bash
+25-to start a stopped container docker start <container name>
+26-to go inside the started container :docker attach <container_name>
+27-to stop a running container docker stop <container name>
+28-to delete a container docker rm <container name>
+----------------------------------------------------------------------------
+steps to create docker image from file
+1-create a container from ubuntu image and name it bhawesh_ubuntu
+sudo docker run --name bhawesh_ubuntu -it ubuntu /bin/bash
+2-create a folder and a file
+3-exit the container
+3-to check the difference from the base image you made in the container run
+ sudo docker diff bhawesh_ubuntu
+4-to create an image from the docker container
+docker commit <containername> <faviorite image name>
+sudo docker commit bhawesh_ubuntu updated_bhawesh_ubuntu
+5-docker images
+6-sudo docker run -it updated_bhawesh_ubuntu /bin/bash
+(this will create a container from the image now)
+7-docker ps -a (to check the container built)
+--------------------------------------------------------------------------------
+docker file ----->image------->container
+
+Dockerfile is a text file .it contains set of instructions
+It automates image creation process
+
+
+Docker Components
+
+FROM -for base image.This command must be on top of Dockerfile
+
+RUN - to execute command ,it will create a layer in image
+
+MAINTAINER -Author/Owner
+COPY- Copy files from local system(docker vm).We need to provide source,destination (We cant download file from internet and any remote app)
+
+ADD-similar to COPY but,it provides a feature to download files from internet ,also we extract files from internet
+
+EXPOSE - to expose  ports such as port 8080 for tomcat ,port 80 for nginx
+
+WORKDIR - to set working dir for a container
+CMD - Execute commands but during container creation
+
+ENTRYPOINT-similar to CMD but has higher prioirity over CMD ,first command will be executed with entry point only
+ENV-Environment Variables
+
+Steps to create image from docker file
+1-create a file named Dockerfile
+FROM ubuntu
+RUN echo "Bhawesh">/tmp/test
+
+2-To create image out of dockerfile
+docker build -t myimage . (dot means docker file is in the current directory)
+t=tag myimage(name of image)
+image is built
+docker ps -a
+docker images
+
+
+
+
+
+
+
+

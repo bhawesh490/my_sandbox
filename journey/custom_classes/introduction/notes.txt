@@ -1,0 +1,56 @@
+1-everthing in python is an object
+2-has a type (aka class) like int,list and that type is also called as class 
+3-has state 
+4-has functionality
+for example:
+[1,2,3,4,5] is an object 
+-its type is list -->we say it is an instance of a list 
+-its state are the elements in the list 
+-functionality such as .append()
+
+l1=[1,2,3]
+l2=['a','b','c']
+l2.append('d)-->this is affecting l2 not l1
+l1 and l2 are 2 different object 
+both instances of the list type 
+but different state
+-------------------------------------
+methods and binding
+why does l2.append(d) does not affect l1
+-append is a function that works on a specific instance of the class 
+-append is called the method of the list class 
+
+-----------------------------------
+custom classes 
+1-we can define our own custom classes 
+2-instance of those classes will have 
+ -a type (custom type we created -like list class has list type)
+ -some state (we can store values specific to the instance)
+ -functionality(methods that are functions bound to the instance)
+------------------------------------
+initializers
+1-when we create a new instance of a class 
+-often we want to create some initial state 
+-usually by passing arguments to the creation phase 
+2-this is called the initialisation phase 
+3-creation process is stared by calling the class(type)
+a = tuple([1,2,3])
+we are calling a tuple class using ()
+-->passing the argument [1,2,3]
+call returns a new tuple instance ,initalised with the elements 1,2,3
+
+------------------------------------------------
+1-a single class can be used to create many instance of the class 
+class Person:
+""" A SIMPLE PERSION CLASS"""
+When we define a person class by default python gives us some functionality 
+1-it is callable p = Person() this creates a new instances of Person
+2-Person and p have some state python defined for us 
+-Person.__doc__   = A SIMPLE PERSION CLASS (doc dunder method)
+-Person.__name__  = 'Person' like func.__name__ = name of function 
+-type(p)->Person and more  
+
+
+
+
+

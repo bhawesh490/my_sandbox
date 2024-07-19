@@ -1,0 +1,103 @@
+Terminology
+
+                Person
+                -name
+                -eat()
+
+Teacher                     Student
+-teach()                    -study()
+
+-Teacher and student are children
+-Person is the parent
+
+Different ways of quoting this relationship
+1-Student inherits from Person
+2-Student is the child of Person
+3-Person is the Parent of Student
+4-Student is the subclass of Person
+5-Student Subclasses Person
+6-Student extends Person
+7-Student derives from Person
+
+Instances
+Objects that are created from a class are called instances of that class
+                                Person
+                    Teacher               Student
+p1=Person()
+s1=Student()
+t1=Teacher()
+
+s1 is a student
+-s1 is an instance of Student
+-student inherits from Person
+-s1 is a Person
+-s1 is an instance of Person
+-s1 is not a Teacher
+
+p1 is a Person
+-but p1 is not a Student
+-but p1 is not a Teacher
+------------------------------------------------------------------------------------------------
+                                Person
+                    Teacher               Student
+
+p1=Person()
+s1=Student()
+t1=Teacher()
+
+-s1 is an instance of Student       isinstance(s1,Student) ->True
+-s1 is an instance of Person        isinstance(s1,Person)  ->True
+-s1 is not a Teacher                isinstance(s1, Teacher) ->False
+-p1 is not a Student                isinstance(p1, Student) ->False
+
+type(instance)   -->Returns the class the instance was created from directly
+type(s1)->Student
+type(t1)->Teacher
+type(p1)->Person
+
+------------------------------------------------------------------------------------------------
+isinstance() vs type()
+-more often use isinstance() rather than type()
+-oftern we are concerned whether an object has certain behaviours
+-let's say we want to call the eat() method of an object if it has one
+we could do this:
+if type(obj) is Person:
+    obj.eat()
+-but if obj is a Student (or Teacher), this wont call its eat() method
+becuase type(obj) only returns the direct class the instance was created from
+that is why we prefer to use isinstance(obj,Person)
+                                    obj.eat()
+
+------------------------------------------------------------------------------------------------
+The issubclass() function
+Used to inspect inheritance relationship between classes(not instance)
+
+                                Person
+                    Teacher                 Student
+                                 HighSchoolStudent     CollegeStudent
+Note:
+->Person is a parent of Student
+->Person is not a parent of CollegeStudent(GrandParent though)
+->Person is an ancestor of CollegeStudent
+->parent is a direct relationship
+->subclass is not necessarily direct
+
+issubclass(Student,Person)   ->True
+issubclass(CollegeStudent,Student)->True
+issubclass(CollegeStudent,Person) ->True
+issubclass(Student,Teacher) ->False
+issubclass(Person,Student)  ->False
+
+Defining Subclasses
+class Person:
+    pass
+
+class Student(Person):
+    pass
+
+Student inherits from Person class and is subclass of Person
+What about Person class
+is it inheritiing from nothing?
+-->it inhertis from the object class by default
+so Student is also subclass of object class and by default has access to all the methods of object class
+

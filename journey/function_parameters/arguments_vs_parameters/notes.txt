@@ -1,0 +1,13 @@
+def my_func(a, b):
+    #code here
+
+in this context a and b are called parameters of my_func
+
+when we call the functions:
+x = 10
+y = 'a'
+my_func(x, y)
+x and y are called arguments of my_func
+also note that x and y are passed  by references
+i.e the memory addresses of x and y are passed
+

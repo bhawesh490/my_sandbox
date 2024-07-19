@@ -1,0 +1,25 @@
+#module1.py
+class Python:
+    kingdom = 'animals'
+    phylum = 'chordata'
+    family = 'pythonida'
+
+    def __init__(self, species):
+        self.species = species
+
+    def say_hello(self):
+        return 'sss_'
+
+p = Python('monty')
+module has its own(global) scope
+contains Python and p
+
+Now inside the class has its own scope
+class body has itw own scope
+contains kingdom,phylum,family,__init__,say_hello
+
+what about the scope of functions defined in the body of the class
+->turns out that they are NOT nested inside the class body scope
+->symbols __init__,say hello are in the class body scope
+-->but functions themselves are nested in the class's containing the scope(module1 in this example
+)

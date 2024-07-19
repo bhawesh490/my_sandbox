@@ -1,0 +1,17 @@
+1- in App/python/python39/python.exe should be present once python is installed
+Install Packages
+pip-package installer for python 
+installing 3rd party libraries(packages)  basically requires copying files into python installation(which ever directory we want)
+can be done manually but tedius 
+-->instead we can use another app called pip which get installed alongside with python 
+-->this easily installs and removes and updates packages 
+-->uses python package index (https://pypi.org)
+-->official third party repo for python 
+-->a repo over 200000 python packages 
+use a requirements.txt file to keep track of libraries you have used 
+pip freeze >>requirements.txt 
+and when ever we have to install the packages again we can use 
+pip install -r requirements.txt 
+
+
+

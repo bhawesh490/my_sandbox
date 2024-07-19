@@ -1,0 +1,23 @@
+when possible a commit should encompasses a single feature change or fix
+in other words try to keep each commit focussed on a single thing
+use present tense in commit messages
+write code as if you are giving orders to the codebase to change its behaviour
+
+git log --oneline
+
+if we forget to add extra message in commit we can use
+
+git commit --amend (to amend the previous commit)
+
+scenairo:
+you created two file
+file 1
+file 2
+git add file 1
+git commit -m "added file1"
+<here you realised you have to add file 2 also in that commit"
+git add file 2
+git commit --ammend
+--------------------------------
+to get recommended list of git ingore files use this link
+https://www.toptal.com/developers/gitignore/

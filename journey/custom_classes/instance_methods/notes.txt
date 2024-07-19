@@ -1,0 +1,21 @@
+exactly same as the __init__ function
+define a function in the class
+first argument will be the instance
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        return f'Hello, {self.name}'
+p = Person('Alex')
+p.greet()
+in above greet function since we have passed self we have access to the object so we can access now
+object/instance name also
+
+
+self == instance actually and this function greet is bounded to that particular instance
+
+Remenber:
+dunder method __init__ gets called automatically when an instance is created
+but these custom methods which we create needs to be called

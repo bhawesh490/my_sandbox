@@ -1,0 +1,96 @@
+Rest API:
+API-->Application Programming Interface 
+
+--------------------------------------------------------
+json data or json string 
+javascript object notation 
+it is a simple way of representing object using just string 
+--->very easy to transmit strings 
+--->over a network as a text file etc 
+json is a lightweighted standard that we can use to 
+json is a pure text format
+json looks like a python dictionary but is a string 
+
+'''
+{
+"firstName":"Eric",---->in json key has to be a string,in python key can be integers
+"lastName":"Smith",----->note to camelCase
+"address":{        ---->address is not a string or key but itself is an object 
+    "country":"USA",
+    "state":"New York",---->white spaces do not matter in json 
+},
+"age":20,
+"favoriteNumbers":[42,3.14],
+"likesSushi":false,---->in python dict it is false(Capital)
+"driverLicense":null ---->in python dict its None
+}
+'''
+
+
+--->encode an python dict object into a JSON string--->serialization (encode)
+    serialize means converting into series of characters
+    json.dumps(dict) ---->returns a json string 
+    basic json datatypes are very simple int,float,str,bool,None
+    but if we have other datatypes like datetime coming from python dict its not seralised by default 
+    we have to specify custom encoders
+
+--->decode a JSON string into an dict object/python object --->deseralization (decode)
+    to decode use python standard library json module 
+    this json module has a function called loads (load s means load from string)
+    
+    json.loads(json_string)--->this will parse a json string and return a dict object 
+    there is another method called load where we can pass text file 
+
+
+
+
+most often used when transmitting data over the web (eg REST APIs)
+it is a pure text format 
+language independent
+
+------------------------------------------------------
+json consists of 
+object:list of unordered key:value pairs delimited by {}         kind of (dictionary)
+array:ordered list elements separated by , and delimited by [ ]  kind of list 
+
+'''----->it is a string 
+{------>root is an object 
+"firstName":"Eric",
+"age":28
+}
+
+
+'''
+
+1-null is used in json but does not exists in python None is used in python
+2-true is used in json but in python we use True 
+
+
+Requests library
+requests.get(...)
+requests.put(...)
+requests.post(...)
+these all are functions in the request module 
+Common arguements
+url--the url request will be sent to 
+params--dictionary of query parameters (key=value)
+json--json sent in request (usually for post ,put etc)
+headers -dictionary of headers(key=value)
+
+Receiving responses
+-->result of making a request (get,posts etc) is a Response object
+-->it has the following properties 
+status_code -200 ,403
+reason-OK,Forbidden
+test-content of response
+json-returned deserialized JSON if any -->so a dict 
+headers -dictionary of headers received from the server 
+cookies--cookies received from server 
+
+
+------concept of serde with respect to hive---------------
+Serialization and deserialization are key processes in data management and are essential for handling data in different formats within a system like Hive. Here's why they are necessary:
+Serialization: When data is serialized, it is converted into a format that can be easily stored or transmitted. In the context of Hive and the given SQL statement, when data is ingested into the system, it needs to be serialized into a format that can be efficiently stored in the underlying file system or data storage (in this case, S3). Serialization prepares the data for storage or transmission by transforming it into a structured format that can be easily managed and manipulated by the system.
+Deserialization: Deserialization is the process of converting serialized data back into its original format for processing or analysis. In the case of Hive, when data is read from the storage location, it needs to be deserialized from its stored format (in this case, JSON) into a format that Hive can understand and work with effectively. Deserialization allows the system to interpret the stored data and manipulate it as needed for querying, analysis, or further processing.
+In summary, serialization and deserialization are essential for ensuring that data can be efficiently stored, retrieved, and processed within a system like Hive. The use of a custom SerDe like org.openx.data.jsonserde.JsonSerDe in the provided SQL statement enables Hive to handle JSON data by serializing it for storage and deserializing it for analysis and processing.
+I hope this explanation helps! If you have more questions or need further details, feel free to a

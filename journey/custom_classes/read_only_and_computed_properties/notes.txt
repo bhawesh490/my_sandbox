@@ -1,0 +1,57 @@
+Read Only Properties
+to create a read only property we just need to create a property with only the get accessor defined
+->not truly read-only since underlying storage variable could be accessed directly
+->useful for computed properties
+class Circle:
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return math.pi*self.r*self.r
+
+c = Cirlce(1)
+c.area() -->3.14
+class Circle:
+    def __init__(self, r):
+        self.r = r
+    @property
+    def area(self):
+        return math.pi*self.r*self.r
+
+c = Circle(1)
+c.area = 3.14
+
+
+Application:Caching Computed Properties
+Using Property setters is sometimes useful for controlling how other computed properties are cached
+->Circle
+-area is a computed property
+->lazy computation-only calculates area if requested
+->cache value-so if requested we save the computation
+-but if someone changes the radius?
+-need to invalidate the cache
+
+-control setting the radius using a property
+-we are  now aware when the property has been changed
+
+class Circle:
+    def __init__(self, r):
+        self._r = r
+        self._area = None ---->setting _area cache to None
+
+    @property
+    def radius(self):
+        return self._r
+
+    @radius.setter(self, r):
+        if r < 0:
+            raise ValueError('Radius must be non negative')
+        self._r = r
+        self._area = None ---->invalidating the cache
+
+    @property
+    def area(self):
+        if self._area is None:
+            self._area = math.pi * (self.radius**2)
+        return self._area
+

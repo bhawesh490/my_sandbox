@@ -1,0 +1,6 @@
+the __init__ method 
+1-is a special function that is called by Python when we create a new instance of the class 
+class Circle:
+    def __init__(self):
+        print('__init__ called')
+        

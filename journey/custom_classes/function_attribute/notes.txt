@@ -1,0 +1,47 @@
+fuction attributes behaves differently than data attributes
+class MyClass:
+    def say_hello():
+        print("Hello World")
+
+my_obj = MyClass()
+MyClass.say_hello  <function __main__.MyClass.say_hello()>
+my_obj.say_hello <bound method MyClass.say_hello of <__main__.MyClass object at 0x10383>>
+MyClass.say_hello() -->'Hello World'
+my_obj.say_hello() ->TypeError
+say_hello() takes 0 positional argument but 1 was given
+
+Methods:
+method is an actual object type in Python
+like a function ,it is callable
+but unlike a function it is bound to some object
+and that object is passed to the method as its first parameter
+
+my_obj.say_hello() ->say_hello is a method object
+                   ->it is bound to my_obj
+                   ->when my_obj.say_hello is called,the bound object my_obj is injected
+                   as the first parameter to the method say_hello
+
+so it is essentially calling this:
+MyClass.say_hello(my_obj)
+but there is more to it than just calling the function this way-method object
+------------------------------------------------------------------------------
+Methods are objects that combine
+->instance(of some class)
+->function
+
+->like any object in python it also has attributes
+1-__self__ ->the instance the method is bound to (method.__self__)
+2-__func__ ->the original function(defined in the class) (method.__func__)
+
+calling obj.method(args)   -->method.__func__(method.__self__, args)
+
+class Person:
+    def hello(self):
+        pass
+p = Person()
+p.hello.__func__ -> {def hello(self):
+        pass }
+p.hello.__self__ ->p
+
+
+

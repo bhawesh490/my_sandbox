@@ -1,0 +1,86 @@
+1-already seen __init__
+2-provides special behaviour to our custom classes
+3-there are many such methods that provides special behaviour
+4-they start and end with double underscores
+5-often referred to as dunder methods
+(so dont use this convention for your own method names)
+
+
+###############################################################
+object string representation
+l = [1, 2, 3]
+print(l) --->'[1,2,3]' ---->this is a string but we know l is an object but why it is printing string?
+
+but when we create a custom class
+class Circle:
+    def __init__(self, radius):
+    self.radius = radius
+
+c = Circle(10)
+print(c)  ---->c is an object but it prints <__main__.Circle object  at 0x7fc34b20>
+here the default representation for our custom object is different.
+it saying that this object belongs to my main notebook in Circle class at some memory location
+
+we can overwride this default behavour by using below 2 dunder methods
+1-__str__
+2-__repr__
+
+they change the default representation of our string objects
+
+str(c)   --->will call c.__str__() method
+repr(c)  --->will call c.__repr__() method
+Why 2 methods?
+dunder __str__ is used for string representation for users
+__repr__ is used for string representation for developers(more detail usually) like class detail exactly
+
+
+so print(c)  uses __str__ if present
+otherwise __repr__
+otherwise default (class name and object id) that is what we saw in our above custom class object
+
+Object Equality:
+l1 = [1,2,3]
+l2 = [1,2,3]
+l1 is l2 --->False not the same object
+l1 == l2 --->True but they are equal
+
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+p1 = Person('Alex')
+p2 = Person('Alex')
+p1 is p2 --->False not the same object
+p1 == P2 -->False (Python will tell that you did not tell me about the object as they seem two different objects so they are not equal)
+
+So in this case we need to tell python that when you are doing the equality comparison here is the code
+you have to use to check if two class instance can be considered equal
+so we can overwride equality definition for our custom objects using dunder __eq__ method
+so its a special method and when we use __eq__ method python is going to look for this special method
+if it exists its going to use it
+
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def __eq__(self, other):
+        return self.name == other.name
+p1 = Person('Alex')
+p2 = Person('Alex')
+p1 == p2 --->True becuase it called p1.__eq__(p2)
+so in general a == b
+is a.__eq__(b) if it exists
+
+
+
+
+
+
+
+
+
+
+
+
+

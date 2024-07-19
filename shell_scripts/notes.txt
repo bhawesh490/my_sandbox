@@ -1,0 +1,90 @@
+Command to tell which shell you are using
+echo $0
+whoami
+create a file named 01_basic.sh
+vi 01_basic.sh (you can use touch also)
+
+#!/bin/bash use to tell where the script should run (like in bash shell)
+
+How to run a shell script
+1-Make sure script has execute permission rwx(read write and execute)
+(check using ls -ltr)
+chmod +x 01_basic.sh
+2-Run using ./script.sh
+            /path/script.sh
+            bash script.sh [to run without permission]
+3-ctrl+c to terminate
+4-ctrl+z to stop
+---------------------variables--------------------------------------------------------------
+VAR_NAME = value[fixed value]
+VAR_NAME = $(hostname)
+[maan no value jo assign krne hi variable ko wo kisi ka output ho jo ki change ho sakta hai to is case mai
+ye uper wala syntax use krte hai.basically it stores the outuput of a commmand
+like hostname,ls,pwd etc
+]
+
+echo $VAR_NAME  (variable ko use krne ke lie dollar sign ka use krna hai)
+----------------------------------------------------------------------------------------
+Constant Variables
+readonly VAR_NAME=value
+
+----------------------------------------------------------------------------------------
+Arrays
+How to define an Arrays
+myArray=( 1 2 Hello "hey man" )
+How to get values from an array?
+echo "${myArray[0]}"
+echo "${myArray[1]}"
+
+how to get length of the array?
+echo "${#myArray[*]}"
+how to get specific values?
+echo "${myArray[*]:1}"
+echo "${myArray[*]:1:no_of_values}"
+
+how to update array with the new values
+myArray+={value1 value2}
+--------------------------------------------------------------------------------------------
+Arrays key value
+declare -A myArray
+myArray=([name]=Paul [age] 20)
+echo "${myArray[name]}"
+--------------------------------------------------------------------------------------------
+string ops
+myVar="Hello World"
+length=${#myVars}
+upper=${x^^}
+lower=${y,,}
+replace=${myVar/World/Buddy}
+slice=${myVar:6:11}
+--------------------------------------------------------------------------------------------
+Taking Inputs from users
+read <var_name>
+read -p "Your name" <var_name>
+---------------------------------------------------------------------------------------------
+if else
+if [ $marks -gt 40 ]:
+then
+    echo "You are PASS"
+else
+    echo "You are FAIL"
+fi
+
+Environment Variables
+1-linux environment variable is a dynamic-named value which may be used by one
+or more programs running
+2-VARIABLE_NAME=VALUE
+3-printenv or env to see list of environment variables
+4-to access environment variable echo $NAME or echo $HOSTNAME
+5-set environment variables temporary
+export TESTVAR=1
+check if environment variable is created or not using env command
+echo $TESTVAR
+6-to set environment variable permanently(for specific user)
+vi .bashrc
+TESTVAR='123'
+export TESTVAR
+7-to set global environment variable permanently(for all users)
+vi /etc/profile or /etc/bashrc
+TESTVAR='123'
+export TESTVAR

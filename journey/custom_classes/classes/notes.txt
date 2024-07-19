@@ -1,0 +1,77 @@
+class Circle:
+    """docs for the class"""
+it has quite a a bit of functionality built in for us by python
+Circle.__name__ -->'Circle'
+Circle.__doc__ -->'docs for the class'
+Circle.__class__-->Circle
+
+Circle.__class__ is Circle -->True
+
+c1 = Circle()
+c2 = Circle()
+--type of c1 and c2 is circle
+type(c1) is Circle -->True
+c1 is an instance of Circle
+isinstance(c1, Circle)->True
+
+---------------------------------
+we can set attributes directly on the instance
+c1 = Circle()
+c1.radius = 10
+c2 = Circle()
+c2.radius = 20
+
+-->we can retrieve the attribute from each instance
+print(c1.radius)  ->10
+print(c2.radius)  ->20
+
+-----------------------------------------------------
+we create instance of class by calling the class
+we can set/get attributes directly on the instance using dot notation
+to create  and initiate a Circle instance
+c1 = Circle()
+c1.radius = 10
+now this radius attribute exist in the instance namespace --->normally a dictionary
+so if we call dunder dict property on c1
+c1.__dict__ = {'radius': 10}
+sometime the state is not in the dictionary
+
+A class is like a template used to create objects
+the object created from that class are called instance
+**class is also called type
+so list is a class as well as type so they are synonymous
+
+classes are themselves objects
+
+-it means they have state(attributes)
+-eg class name (or type name)
+-they have behaviour.means we can create instances of the class(pyhton does in backgroup for us)
+-if a class is an object and the objects are created from classes how are classes created
+-python create classes from the type metaclass
+
+classes
+- classes have behaviour they are callable MyClass()
+-this returns an instance of the class
+-often called objects ,differentiating from class
+-(even though a class is technically an object as well)
+
+Instances are created from the class
+1-their type is the class they were create from
+if MyClass is a class in Python and my_obj is an instance of that class my_obj = MyClass()
+type(my_obj) ->MyClass(this is an object Classes are object):Note MyClass is not a string
+isinstace(my_obj, MyClass)->True
+
+Creating Classes
+use the class Keyword
+class MyClass:
+    pass
+-python creates an object
+ -called MyClass
+ -of type type
+ -automatically provides a certain attributes(state) and methods(behaviour)
+
+ MyClass.__name__  --->'MyClass'--string   (state)
+ MyClass()-->returns an instance of MyClass (behaviour)
+ type(MyClass)-->type
+ isinstance(MyClass,type)-->true
+
