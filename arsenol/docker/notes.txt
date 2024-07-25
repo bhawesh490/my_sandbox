@@ -6,7 +6,7 @@ virtualisation advance version of containerisatin
 container ka khud ka os nahi hota hai[100% os mai hai to 5% hi lega jo missing hai]
  container ke andar 5% os hota hai os line untuu
 docker khud ko chalene ke lie linux ka use krta hai
-no preallocation of ram
+no preallocation of RAM
 container is the running state of image
 docker deamon will make image of container
 docker user can interact with docker daemon through client(cli)
@@ -15,6 +15,16 @@ ways to create images
 1-take image from docker hub
 2-create image from docker file
 3-create image from existing docker container
+
+Install Docker:
+
+Pre Requisites:
+WSL2
+sudo apt install docker
+sudo service docker start
+sudo docker run hello-world
+
+
 
 commands
 1-docker images to check images present
