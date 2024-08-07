@@ -1,0 +1,2 @@
+#threads are python objects of threading.Thread() class
+#threading is a module

@@ -1,0 +1,5 @@
+import sys
+These modules consists of functions,classes,methods and variables
+when we install pyspark we get 2 things
+1-py4j to manage logging
+2-pyspark
