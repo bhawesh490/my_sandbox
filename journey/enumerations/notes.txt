@@ -1,0 +1,6 @@
+Deal with multiple related constants
+STATUS_STARTED = 'started'
+STATUS_PENDING = 'pending'
+STATUS_ERROR = 'error'
+STATUS_OK = 'OK'
+STATUSES = [STATUS_STARTED,...,STATUS_OK]

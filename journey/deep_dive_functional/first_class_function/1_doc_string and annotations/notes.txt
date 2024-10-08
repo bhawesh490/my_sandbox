@@ -1,0 +1,92 @@
+First class functions
+all functions in python are first call functions
+before functions lets see what are first class objects
+1-these can be passed to a function as argument like int in first class object
+2-can be returned from a function
+3-can be assinged to a variable
+4-can be stored in a data structure (such as list ,tuple ,dictionary etc )
+Types such as int,float,string,tuple,list and many more are first class objects
+
+Functions(functions) are also first- class objects
+they can be also passed as an argument etc
+
+Higher order functions
+takes a function as an argument and or if it return a function
+
+Docstring
+we have seen that help(x) function --->return some documentation if available for x object
+we can document our functions(and modules and classes ) to achieve the same result using docstring ->PEP257
+def my_func(a):
+    """document for my_func"""   --->complied into a code while comments are not complied into a code
+    return a
+
+so i docstring we are kind of metadata to the objects
+help(my_func)
+
+
+where are doc string stored
+
+in the functions __doc__ property
+fact.__doc__
+
+Function annotations
+it gives us additional way to document our functions but this time we are documenting parameters -PEP3107
+
+def my_func(a: <expression>,b:<expression>) -> <expression>:
+    pass
+
+def my_func(a: 'a string',b: 'a positive integer') -> 'a string':
+    return a * b
+
+help(my_func) -->my_func(a: 'a string',b: 'a positive integer') -> 'a string':
+my_func.__doc__ -->empty string
+so these annotations do not get stored in dunder doc but somewhere else
+
+Annotations can be any expression
+it means we can put in a type like string str
+
+def my_func(a: str, b: 'int>0') -> str:
+    return a + b
+
+def my_func(a: str, b: [1,2,3]) ->str:
+    return a + b
+
+1-Note a parameter is not forced to be a string
+2-b parameter can be a list
+
+x = 3
+y = 5
+def my_func(a: str) -> 'a repeated ' + str(max(x,y)) + 'times':
+    return a * max(x,y)
+Note annotations can have functions also
+
+
+Default values for params
+
+def my_func(a: str = 'xyz', b: int = 1) ->str:
+    pass
+
+def my_func(a: str = 'xyz',
+            *args: 'an additional paramas',
+            b: int = 1,
+            **kwargs: 'additional keyword only params') ->str:
+    pass
+
+Where are annotations stored?
+__annotation__ property of the function
+--dictionary keys are parameter name for a return annotation,the key is return
+--values are annotations
+
+def my_func(a: 'info on a ', b:int) ->float
+    pass
+
+my_func.__annotation__
+
+{'a':'info on a ' , b: 'int', 'return': float}
+
+these annotations are used in sphinx or 3rd party tools
+
+
+
+
+

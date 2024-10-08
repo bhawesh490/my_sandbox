@@ -3,7 +3,7 @@ from pyspark import SparkContext, SparkConf
 from sys import stdin
 
 # Initialise Spark
-conf = SparkConf().setAppName("First App").setMaster("local[*]")
+conf = SparkConf().setAppName("word count").setMaster("local[*]")
 # .setMaster("local[*]") means run Spark locally with as many worker
 # threads as logical cores on your machine.
 sc = SparkContext(conf=conf)
@@ -23,7 +23,12 @@ print(rdd.take(3))
 rdd1 = rdd.flatMap(lambda x: x.split(" "))  # Transformation
 print(rdd1.take(3))
 rdd2 = rdd1.map(lambda x: (x, 1))
+print(rdd.collect())
+print(rdd2.glom().collect())
+print(rdd2.getNumPartitions())
 rdd3 = rdd2.reduceByKey(lambda a, b: a + b)
+print(rdd3.glom().collect())
+print(rdd3.getNumPartitions())
 # # print(rdd3.collect()) collect is not preferred instead us saveAsTextFile
 print(rdd3.take(3))
 # # lets check partitions before saving
@@ -37,4 +42,4 @@ print(rdd3.getNumPartitions())
 
 # you admin will setup history server where you can see the dag
 # but in our case history server is not set
-# stdin.readline()  # to keep the console open workaround to see the dag
+stdin.readline()  # to keep the console open workaround to see the dag

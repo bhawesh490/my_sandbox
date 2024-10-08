@@ -1,0 +1,77 @@
+when an object is assigned to a variable a = 10
+that variable points to some object
+and we say that the variable(name) is bound to that object
+
+that object can be accessed using that name in various parts of our code
+but not just anywhere
+
+That variable name and its binding(name and object) only exists in specific parts of our code
+the portion of the code where that name/binding is defined is called lexical scope of the variable
+these bindings are stored in namespace
+think of namespace as a table that contains the label(name) and the reference its binding to
+
+namespace
+var1  0xA345E
+func1 0xA345D
+
+Global Scope
+====================
+1-it is the module scope
+2-it spans single file only
+3-there is no concept of truley global(across all the modules in our entire app) scope in python
+4-the only exception to this are some of the built-in globally available objects such as
+True,False,None,dict,python
+5-The built-in and global variables can be used anywhere inside our modules inclusing inside our function
+
+                    Built in Scope  --own namespace
+                            |
+      -------------------------------------------------------
+      |                             |
+module1 Scope   --own namespace    module2 scope --own namespace
+
+
+if you reference a variable inside a scope and python does not find it in that scope's namespace it will go the the outer scope's namespace to fetch it
+
+local scope
+===============
+When we create a function ,we can create variables names inside the functions
+eg a = 10
+
+variables inside the function are not created until the function is called
+Everytime a function is called a new scope is created
+variables defined inside the functions are assigned to that scope
+function local scope
+local scope
+the actual object the variable references could be different each time function is called
+
+
+                    Built in Scope  --own namespace
+                            |
+      -------------------------------------------------------
+      |                             |
+module1 Scope   --own namespace    module2 scope --own namespace
+      |
+-------------
+|           |
+local scope local scope
+
+Namespace lookup
+When requesting the object bould to a variable name eg print(a)
+Python will try to find the object bound to the variable
+1-in current local scope first (where function ran)
+2-works up the chain of enclosing scopes
+
+
+a =20
+def hello():
+    a = 10
+    print(a)   ---->10 taken from local namespace
+print(a) --->20 taken from gloal namespace
+
+
+a =20
+def hello():
+    global a   --->we are instucting python to use global namespace
+    a = 10
+    print(a)   ---->10 taken from local namespace
+print(a) --->20 taken from gloal namespace
