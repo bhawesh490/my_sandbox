@@ -1,0 +1,172 @@
+{
+    "application_name": "abc",
+    "execution_id": "abc",
+    "application_category": "Extraction",
+    "step_name": "intelds_next_ingest_step",
+    "job_name": "se-intelds-edh-euwe1-file-tracker-terraform-local",
+    "account_id": "035328922125",
+    "account_name": "se-intelds-edh-local",
+    "account_region": "eu-west-1",
+    "log_timestamp": "2024-10-15T14:49:51.624309+00:00Z",
+    "log_stat_type": [
+        "job_metrics"
+    ],
+    "job_id": "Running_Locally",
+    "job_type": "Glue Worker",
+    "job_status": "Completed",
+    "job_step": "Child Process of table: sap_hana_intelds_vs_i_workcentertext",
+    "start_time": "2024-10-15T14:50:03.566465+00:00",
+    "end_time": "2024-10-15T14:51:22.509893+00:00",
+    "job_metrics": {
+        "source": "sap_hana_intelds_vs_i_workcentertext",
+        "landing_table": "s3://se-intelds-dih-euwe1-gsc-landing-sbx/manufacturing/snapshot/unifydatasphere/cds_views/sap_hana/intelds/vs_i_workcentertext",
+        "inserted_records": 716,
+        "updated_records": 0,
+        "deleted_records": 0,
+        "source_type": "",
+        "domain": "",
+        "sub_domain": "",
+        "target": "",
+        "source_target_validation_result": "",
+        "schema": [
+            {
+                "column_name": "WorkCenterTypeCode_New",
+                "column_type": "string"
+            },
+            {
+                "column_name": "Hello_Testing",
+                "column_type": "string"
+            },
+            {
+                "column_name": "WorkCenterInternalID",
+                "column_type": "string"
+            },
+            {
+                "column_name": "Language",
+                "column_type": "string"
+            },
+            {
+                "column_name": "WorkCenterText",
+                "column_type": "string"
+            },
+            {
+                "column_name": "Plant",
+                "column_type": "string"
+            },
+            {
+                "column_name": "WorkCenterCategoryCode",
+                "column_type": "string"
+            },
+            {
+                "column_name": "LoadTimestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "SourceSystem",
+                "column_type": "string"
+            },
+            {
+                "column_name": "_meta_uids_timestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "_meta_idsn_landing_timestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "_meta_uids_filename",
+                "column_type": "string"
+            },
+            {
+                "column_name": "_meta_uids_unix_timestamp",
+                "column_type": "int"
+            },
+            {
+                "column_name": "_meta_uids_utc_timestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "_meta_uids_batch_id",
+                "column_type": "int"
+            },
+            {
+                "column_name": "_meta_uids_operation",
+                "column_type": "string"
+            },
+            {
+                "column_name": "_idsn_is_deleted",
+                "column_type": "boolean"
+            }
+        ],
+        "src_schema": [
+            {
+                "column_name": "WorkCenterTypeCode",
+                "column_type": "string"
+            },
+            {
+                "column_name": "WorkCenterInternalID",
+                "column_type": "string"
+            },
+            {
+                "column_name": "Language",
+                "column_type": "string"
+            },
+            {
+                "column_name": "WorkCenterText",
+                "column_type": "string"
+            },
+            {
+                "column_name": "Plant",
+                "column_type": "string"
+            },
+            {
+                "column_name": "WorkCenterCategoryCode",
+                "column_type": "string"
+            },
+            {
+                "column_name": "LoadTimestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "SourceSystem",
+                "column_type": "string"
+            },
+            {
+                "column_name": "_meta_uids_timestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "_meta_idsn_landing_timestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "_meta_uids_filename",
+                "column_type": "string"
+            },
+            {
+                "column_name": "_meta_uids_unix_timestamp",
+                "column_type": "int"
+            },
+            {
+                "column_name": "_meta_uids_utc_timestamp",
+                "column_type": "timestamp"
+            },
+            {
+                "column_name": "_meta_uids_batch_id",
+                "column_type": "int"
+            },
+            {
+                "column_name": "_meta_uids_operation",
+                "column_type": "string"
+            },
+            {
+                "column_name": "_idsn_is_deleted",
+                "column_type": "boolean"
+            }
+        ],
+        "source_datset_name": "src_sap_hana_intelds_vs_i_workcentertext",
+        "target_dataset_name": "tgt_sap_hana_intelds_vs_i_workcentertext",
+        "layer": true
+    },
+    "cloudwatch_log_group": "/custom/glue/extract"
+}
